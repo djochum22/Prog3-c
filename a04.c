@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 
 int c = 100;
 int l = 50;
@@ -38,16 +37,30 @@ int main(void)
         printf("L");
     }
 
-    for (anzahl_x; anzahl_x > 0; anzahl_x--) {
-        printf("X");
+    if (anzahl_x >= 4) 
+    {
+        printf("XL");
+    } 
+    else 
+    {
+        for (anzahl_x; anzahl_x > 0; anzahl_x--) {
+            printf("X");
+        }
     }
-
+    
     for (anzahl_v; anzahl_v > 0; anzahl_v--) {
         printf("V");
     }
 
-    for (anzahl_i; anzahl_i > 0; anzahl_i--) {
-        printf("I");
-    }
+    if (anzahl_i >= 4) 
+    {
+        printf("IV");
+    } 
+    else 
+    {
+        for (anzahl_i; anzahl_i > 0; anzahl_i--) {
+            printf("I");
+        }
+    } 
 }
 
