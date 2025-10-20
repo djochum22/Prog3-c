@@ -1,15 +1,21 @@
 #include <stdio.h>
 
-char letter;
-
 int main(void)
 {
-    printf("Enter character: ");
-    scanf("%c", &letter);
+    char letter = NULL;
+    while (letter != 13)
+    {
+        printf("Enter character: ");
+        scanf("%c", &letter);
 
-    if (letter % 65 >= 1) {
-        letter = ((letter + 13) / 'A' + 'A');
+        if (letter >= 'A' && letter <= 'Z') 
+        {
+            letter = ((letter + 13) % 'Z' + 'A');
+        }
+        else
+        {
+            letter = ((letter + 13) % 'z' + 'a');
+        }
+        printf("%c", letter);
     }
-    printf("%c", letter);
-    
 }
