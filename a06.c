@@ -2,20 +2,21 @@
 
 int main(void)
 {
-    char letter = NULL;
-    while (letter != 13)
+    char letter = '\0';
+
+    do
     {
-        printf("Enter character: ");
         scanf("%c", &letter);
 
         if (letter >= 'A' && letter <= 'Z') 
         {
-            letter = ((letter + 13) % 'Z' + 'A');
+            letter = ((letter - 'A' + 13) % 26 + 'A');
         }
-        else
+        else if (letter >= 'a' && letter <= 'z')
         {
-            letter = ((letter + 13) % 'z' + 'a');
+            letter = ((letter - 'a' + 13) % 26 + 'a');
         }
+
         printf("%c", letter);
-    }
+    } while (letter != 10);
 }
