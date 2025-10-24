@@ -1,20 +1,24 @@
 #include <stdio.h>
+#include <math.h>
 
 void writebit(unsigned z);
 unsigned readbit(void);
 
 int main(void)
 {
-    int a, b;
-
+    unsigned a, b;
     
-    printf("A: ");
-    scanf("%d", &a);
+    a = readbit();
+    b = readbit();
+    
+    printf("Oder: ");
+    writebit(a | b);
 
-    printf("B: ");
-    scanf("%d", &b);
-    */
-   readbit();
+    printf("And: ");
+    writebit(a & b);
+
+    printf("XOR: ");
+    writebit(a ^ b);
 }
 
 void writebit(unsigned z)
@@ -25,6 +29,7 @@ void writebit(unsigned z)
     {
         printf("%d", (z & 1 << i) != 0);
     }
+    printf("\n");
 }
 
 unsigned readbit(void)
@@ -38,7 +43,9 @@ unsigned readbit(void)
 
     for (i = 15; i >= 0; i--)
     {
-        output += ((z & 1 << i) != 0);
+        z %= 10;
+        output += ((z & 1 >> i) != 0);
+        z /= 10;
     }
 
     return output;
