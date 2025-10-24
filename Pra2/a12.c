@@ -35,17 +35,21 @@ void writebit(unsigned z)
 unsigned readbit(void)
 {
     int i;
+    int pow = 1;
     unsigned z;
-    unsigned output;
+    unsigned output = 0;
 
     printf("Input: ");
-    scanf("%16u", &z);
+    scanf("%u", &z);
 
-    for (i = 15; i >= 0; i--)
+    for (i = 0; i <= 15; i++)
     {
-        z %= 10;
-        output += ((z & 1 >> i) != 0);
+        if (z % 10 == 1)
+        {
+            output += pow;
+        }
         z /= 10;
+        pow *= 2;
     }
 
     return output;
