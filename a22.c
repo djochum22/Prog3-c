@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
         {
             if (input >= 'a' && input <= 'z')
             {
+                i = 0;
                 while (input != *alphabet[i])
                 {
                     i++;
@@ -35,6 +36,7 @@ int main(int argc, char *argv[])
         {
             if (input >= 'a' && input <= 'z')
             {
+                i = 0;
                 while (input != *code[i])
                 {
                     i++;
