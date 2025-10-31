@@ -31,4 +31,6 @@ int main(void)
     {
         printf("%6i\n", nums[j]);
     }
+
+    return 0;
 }

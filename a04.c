@@ -48,5 +48,7 @@ int main(void)
     for (anzahl_i; anzahl_i > 0; anzahl_i--) {
         printf("I");
     }
+
+    return 0;
 }
 

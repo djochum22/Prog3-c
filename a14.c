@@ -13,6 +13,8 @@ int main(void)
     } while (!(input % 2) || input > 9);
     
     generateSquare(input);
+
+    return 0;
 }
 
 void generateSquare(unsigned input)

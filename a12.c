@@ -19,6 +19,8 @@ int main(void)
 
     printf("XOR: ");
     writebit(a ^ b);
+
+    return 0;
 }
 
 void writebit(unsigned z)

@@ -19,4 +19,6 @@ int main(void)
 
         printf("%c", letter);
     } while (letter != 10);
+
+    return 0;
 }

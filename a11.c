@@ -19,4 +19,6 @@ int main(void)
     } while (abstand > 0.0000001 && x != 0);
 
     printf("Output: %6.4f", w1);
+
+    return 0;
 }
