@@ -19,6 +19,9 @@ int main(void)
     lst->inhalt = NULL;
     lst->next = NULL;
     lst->prev = NULL;
+
+
+    
 }
 
 void printList(nodep lst)
