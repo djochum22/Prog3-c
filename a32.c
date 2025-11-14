@@ -1,8 +1,5 @@
 #include <stdio.h>
-
-void printList(nodep lst);
-nodep insertAt(nodep lst, int pos, char *inhalt);
-nodep deleteAt(nodep lst, int pos);
+#include <stdlib.h>
 
 struct Node
 {
@@ -13,22 +10,39 @@ struct Node
 
 typedef struct Node *nodep;
 
+void printList(nodep lst);
+nodep insertAt(nodep lst, int pos, char *inhalt);
+nodep deleteAt(nodep lst, int pos);
+void freeAll(nodep lst);
+
 int main(void)
 {
     nodep lst = NULL;
-    lst->inhalt = NULL;
-    lst->next = NULL;
-    lst->prev = NULL;
 
+    lst = insertAt(lst, 0, "hi");
+    lst = insertAt(lst, -1, "last");
+    lst = insertAt(lst, 0, "beginning");
+    lst = insertAt(lst, 2, "middle");
+    lst = insertAt(lst, 1231, "large number");
 
-    
+    lst = deleteAt(lst, 0);
+    lst = deleteAt(lst, 3);
+
+    printList(lst);
+
+    if (lst != NULL)
+    {
+        freeAll(lst);
+    }
+
+    return 0;
 }
 
 void printList(nodep lst)
 {
     while (lst != NULL)
     {
-        printf("%p: %s\n", lst, lst->inhalt);
+        printf("%p: %s\n", (void *)lst, lst->inhalt);
         lst = lst->next;
     }
 }
@@ -137,4 +151,18 @@ nodep deleteAt(nodep lst, int pos)
         }
     }
     return lst;
+}
+
+void freeAll(nodep lst)
+{
+    nodep temp = lst;
+
+    while (lst->next != NULL)
+    {
+        temp = lst;
+        lst = lst->next;
+        free(temp);
+    }
+
+    free(lst);
 }
