@@ -7,55 +7,30 @@ int main(int argc, char *argv[])
 {
     int i = 0;
     int j = 0;
-    int k = 1;
-    int count = 0;
     char zeichen[200];
-    char output[200];
-    char *words[50];
-    char *tok = NULL;
+    char *ptr;
 
-    scanf("%s", &zeichen);
-
-    strcpy(output, zeichen);
-    tok = strtok(zeichen, " ");
-
-    while (tok != NULL)
-    {
-        words[i++] = tok;
-        tok = strtok(NULL, " ");
-        count++;
-    }
+    fgets(zeichen, 200, stdin);
     
     for (i = 1; i < argc; i++)
     {
-        for (j = 0 ; j < count; j++)
+        ptr = strstr(zeichen,argv[i]);
+        while (ptr != NULL)
         {
-            if (strcmp(words[j], argv[i]) == 0)
+
+            for (j = 1; j < strlen(argv[i]); j++)
             {
-                while (isalpha(words[j][k]))
+                if (ptr[j] != '\0' && ptr[j] != ' ')
                 {
-                    words[j][k] = '*';
-                    k++;
+                    ptr[j] = '*';
                 }
-                k = 0;
             }
+
+            ptr = strstr(ptr + 1, argv[i]);
         }
     }
 
-    i = 0;
-    j = 0;
-    while (output[i] != '\0')
-    {
-        if (isalpha(output[i]))
-        {
-            output[i] = words[j][i];
-            j++;
-        }
-        i++;
-
-    }
-
-    printf("%s", output);
+    printf("%s", zeichen);
     
     return 0;
 }

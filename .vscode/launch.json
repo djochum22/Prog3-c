@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/a41",
-            "args": ["douglas","jochum\n"],
+            "args": ["douglas","jochum"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
