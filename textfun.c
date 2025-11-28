@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 #include "textfun.h"
 
 ListEle *wordList = NULL;
@@ -7,7 +8,7 @@ ListEle *wordList = NULL;
 void addPair(const char *such, const char *ersatz)
 {
     ListEle *newEle = (ListEle *)malloc(sizeof(ListEle));
-    ListEle *temp = wordList;
+    ListEle *temp;
 
     if (wordList == NULL)
     {
@@ -15,6 +16,7 @@ void addPair(const char *such, const char *ersatz)
     }
     else
     {
+        temp = wordList;
         while (temp->nextEle != NULL)
         {
             temp = temp->nextEle;
@@ -26,12 +28,12 @@ void addPair(const char *such, const char *ersatz)
 
 void clearList(void)
 {
+    ListEle *temp = wordList;
+
     if (wordList == NULL) 
     {
         return;
     }
-
-    ListEle *temp = wordList;
 
     while (temp->nextEle != NULL)
     {   wordList = temp;
@@ -68,6 +70,7 @@ int replaceAll(char *s)
     int replaceCounter = 0;
     
     struct Fundstelle fundstelle;
+    char *pos;
 
     fundstelle = find(s);
 
@@ -75,13 +78,15 @@ int replaceAll(char *s)
     {
         int newLen = strlen(fundstelle.ersetzung->ersetzungWort);
         int oldLen = strlen(fundstelle.ersetzung->suchWort);
-        char *pos = fundstelle.stelleImSuchstring;
+        pos = fundstelle.stelleImSuchstring;
 
         memmove(pos + newLen, pos + oldLen, strlen(pos + oldLen) + 1);
         memcpy(pos,fundstelle.ersetzung->ersetzungWort, newLen);
         replaceCounter++;
         fundstelle = find(s);
     }
+
+    printf("%s", s);
 
     return replaceCounter;
 }

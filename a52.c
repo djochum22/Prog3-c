@@ -11,14 +11,10 @@ int main(int argc, char *argv[])
 
     for (i = 0; i < argc; i++)
     {
-        char *token[2] = strtok(argv[i], "=");
-
-        while (token != NULL)
-        {
-            token[i%2] = strtok(NULL, "=");
-        }
+        char *token = strtok(argv[i], "=");        
+        char *key = strtok(NULL, "=");
         
-        addPair(token[0], token[1]);
+        addPair(token, key);
     }
 
     
