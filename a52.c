@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     char s[200];
     int number_of_replaced;
 
-    for (i = 0; i < argc; i++)
+    for (i = 1; i < argc; i++)
     {
         char *token = strtok(argv[i], "=");        
         char *key = strtok(NULL, "=");
