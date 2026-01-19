@@ -33,7 +33,10 @@ int main(void)
 
         printf("Size: %d\n", size(lst));
 
-        lst = dequeue(lst);
+        for(i = 0; i < 5; i++)
+        {
+            lst = dequeue(lst);
+        }
     }
 
     if (isEmpty(lst) == 1)
@@ -56,7 +59,6 @@ nodep enqueue(nodep lst, int value)
     return new_node;
 }
 
-/* I am dequeue all elements right now*/
 nodep dequeue(nodep lst)
 {
     nodep temp;
@@ -66,7 +68,7 @@ nodep dequeue(nodep lst)
         return NULL;
     }
 
-    if (lst->next = NULL)
+    if (lst->next == NULL)
     {
         free(lst);
         return NULL;
