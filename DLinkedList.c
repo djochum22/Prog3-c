@@ -46,6 +46,49 @@ int main(void)
     return 0;
 }
 
+nodep insert(nodep lst, int value, int key)
+{
+    nodep temp, new_node;
+    new_node = malloc(sizeof(struct Node));
+    new_node->value = value;
+    new_node->key = key;
+
+    if (lst == NULL)
+    {
+        return new_node;
+    }
+
+    temp = lst;
+
+    if (key < temp->key)
+    {
+        new_node->next = temp;
+        temp->prev = new_node;
+        new_node->prev = NULL;
+        return new_node;
+    }
+
+    while(temp->next != NULL && temp->next->key < key)
+    {
+        temp = temp->next;
+    }
+
+    if (temp->next == NULL)
+    {
+        temp->next = new_node;
+        new_node->prev = temp;
+        new_node->next = NULL;
+        return lst;
+    }
+
+    new_node->prev = temp;
+    new_node->next = temp->next;
+    temp->next->prev = new_node;
+    temp->next = new_node;
+
+    return lst;
+}
+
 nodep deleteKey(nodep lst, int key)
 {
     nodep temp;
@@ -54,6 +97,8 @@ nodep deleteKey(nodep lst, int key)
     {
         return lst;
     }
+    
+    temp = lst;
 
     while(temp != NULL && key != temp->key)
     {
@@ -72,7 +117,26 @@ nodep deleteKey(nodep lst, int key)
         free(temp);
     }
 
-    /* still need to add the common case, edge cases implemented*/
+    while(temp->key == key)
+    {
+        temp = temp->next;
+    }
+
+    if (temp != NULL)
+    {
+        return lst;
+    }
+    else
+    {
+        temp->prev->next = temp->next;
+        if (temp->next != NULL)
+        {
+            temp->next->prev = temp->prev;
+        }
+
+        free(temp);
+    }
+
     return lst;
 }
 
